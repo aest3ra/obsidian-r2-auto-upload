@@ -68,7 +68,7 @@ Make sure the API token has **Object Read & Write** permission for the target bu
 
 ### Manual Installation
 
-1. Download `main.js` and `manifest.json` from the [latest release](https://github.com/aest3ra/obsidian-image-auto-uploader/releases)
+1. Download `main.js` and `manifest.json` from the [latest release](https://github.com/aest3ra/obsidian-r2-auto-upload/releases)
 2. Create `.obsidian/plugins/obsidian-r2-image-uploader/` in your vault
 3. Copy the downloaded files into that directory
 4. Restart Obsidian (or reload plugins)
