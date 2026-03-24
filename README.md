@@ -69,7 +69,7 @@ Make sure the API token has **Object Read & Write** permission for the target bu
 ### Manual Installation
 
 1. Download `main.js` and `manifest.json` from the [latest release](https://github.com/aest3ra/obsidian-r2-auto-upload/releases)
-2. Create `.obsidian/plugins/obsidian-r2-image-uploader/` in your vault
+2. Create `.obsidian/plugins/r2-image-uploader/` in your vault
 3. Copy the downloaded files into that directory
 4. Restart Obsidian (or reload plugins)
 5. Enable **R2 Image Uploader** in Settings → Community plugins
@@ -113,7 +113,7 @@ This plugin makes external network requests. Please read this section before use
 
 - You provide: **Account ID**, **Bucket Name**, **Access Key ID**, **Secret Access Key**, **Public Base URL**
 - These are stored in Obsidian's plugin data file (`data.json`) in plaintext
-- `data.json` is located at `.obsidian/plugins/obsidian-r2-image-uploader/` in your vault
+- `data.json` is located at `.obsidian/plugins/r2-image-uploader/` in your vault
 - Credentials are never included in error messages or logs
 - Secret Access Key is masked in the settings UI
 
