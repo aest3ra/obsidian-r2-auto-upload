@@ -1,0 +1,10 @@
+{
+  "id": "obsidian-r2-image-uploader",
+  "name": "R2 Image Uploader",
+  "version": "1.0.0",
+  "minAppVersion": "1.0.0",
+  "description": "Auto-upload pasted and dropped images to Cloudflare R2",
+  "author": "aestera",
+  "authorUrl": "https://github.com/aest3ra",
+  "isDesktopOnly": true
+}

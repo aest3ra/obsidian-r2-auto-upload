@@ -1,0 +1,19 @@
+{
+  "name": "obsidian-r2-image-uploader",
+  "version": "1.0.0",
+  "description": "Auto-upload pasted/dropped images to Cloudflare R2",
+  "main": "main.js",
+  "scripts": {
+    "dev": "node esbuild.config.mjs",
+    "build": "node esbuild.config.mjs production"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.700.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "esbuild": "^0.24.0",
+    "obsidian": "latest",
+    "typescript": "^5.6.0"
+  }
+}
