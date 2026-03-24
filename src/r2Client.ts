@@ -25,7 +25,7 @@ function createClient(config: R2Config): S3Client {
     // Custom streamCollector to handle cases where the SDK's default
     // streamCollector receives a Uint8Array/ArrayBuffer instead of a
     // ReadableStream (Electron cross-realm instanceof issues).
-    streamCollector: async (stream: any): Promise<Uint8Array> => {
+    streamCollector: async (stream: ReadableStream | ArrayBuffer | ArrayBufferView | Blob): Promise<Uint8Array> => {
       if (ArrayBuffer.isView(stream)) {
         return new Uint8Array(
           stream.buffer,

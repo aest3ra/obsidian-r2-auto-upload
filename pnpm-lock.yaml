@@ -12,6 +12,9 @@ importers:
         specifier: ^3.700.0
         version: 3.1014.0
     devDependencies:
+      '@smithy/types':
+        specifier: ^4.13.1
+        version: 4.13.1
       '@types/node':
         specifier: ^20.0.0
         version: 20.19.37

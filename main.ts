@@ -41,7 +41,7 @@ export default class R2ImageUploaderPlugin extends Plugin {
   async uploadAndInsert(editor: Editor, file: File): Promise<void> {
     if (!this.isConfigured()) {
       new Notice(
-        "R2 Image Uploader: Please configure the plugin settings first."
+        "R2 image uploader: please configure the plugin settings first."
       );
       return;
     }

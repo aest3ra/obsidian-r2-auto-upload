@@ -22,7 +22,7 @@ export function sanitizeFileName(rawName: string): {
   const rawExt = lastDot > 0 ? rawName.substring(lastDot + 1) : "";
 
   let sanitized = base
-    .replace(/[^a-zA-Z0-9_\-]/g, "-")
+    .replace(/[^a-zA-Z0-9_-]/g, "-")
     .replace(/-+/g, "-")
     .replace(/^-|-$/g, "");
 

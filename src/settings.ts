@@ -32,7 +32,7 @@ export class R2UploaderSettingTab extends PluginSettingTab {
     const { containerEl } = this;
     containerEl.empty();
 
-    containerEl.createEl("h2", { text: "R2 Image Uploader Settings" });
+    new Setting(containerEl).setName("R2 image uploader settings").setHeading();
 
     new Setting(containerEl)
       .setName("Account ID")
@@ -41,50 +41,50 @@ export class R2UploaderSettingTab extends PluginSettingTab {
         text
           .setPlaceholder("your-account-id")
           .setValue(this.plugin.settings.accountId)
-          .onChange(async (value) => {
+          .onChange((value) => {
             this.plugin.settings.accountId = value.trim();
           })
       );
 
     new Setting(containerEl)
-      .setName("Bucket Name")
+      .setName("Bucket name")
       .setDesc("R2 bucket name")
       .addText((text) =>
         text
           .setPlaceholder("my-images")
           .setValue(this.plugin.settings.bucketName)
-          .onChange(async (value) => {
+          .onChange((value) => {
             this.plugin.settings.bucketName = value.trim();
           })
       );
 
     new Setting(containerEl)
-      .setName("Access Key ID")
-      .setDesc("R2 API token – Access Key ID")
+      .setName("Access key ID")
+      .setDesc("R2 API token – access key ID")
       .addText((text) =>
         text
           .setPlaceholder("your-access-key-id")
           .setValue(this.plugin.settings.accessKeyId)
-          .onChange(async (value) => {
+          .onChange((value) => {
             this.plugin.settings.accessKeyId = value.trim();
           })
       );
 
     new Setting(containerEl)
-      .setName("Secret Access Key")
-      .setDesc("R2 API token – Secret Access Key")
+      .setName("Secret access key")
+      .setDesc("R2 API token – secret access key")
       .addText((text) => {
         text.inputEl.type = "password";
         text
           .setPlaceholder("your-secret-access-key")
           .setValue(this.plugin.settings.secretAccessKey)
-          .onChange(async (value) => {
+          .onChange((value) => {
             this.plugin.settings.secretAccessKey = value.trim();
           });
       });
 
     new Setting(containerEl)
-      .setName("Public Base URL")
+      .setName("Public base URL")
       .setDesc(
         "Public URL for the bucket (e.g. https://pub-xxx.r2.dev or https://img.example.com)"
       )
@@ -92,13 +92,13 @@ export class R2UploaderSettingTab extends PluginSettingTab {
         text
           .setPlaceholder("https://pub-xxx.r2.dev")
           .setValue(this.plugin.settings.publicBaseUrl)
-          .onChange(async (value) => {
+          .onChange((value) => {
             this.plugin.settings.publicBaseUrl = value.trim();
           })
       );
 
     new Setting(containerEl)
-      .setName("Path Template")
+      .setName("Path template")
       .setDesc(
         "Upload path template. Variables: {year}, {month}, {day}, {timestamp}, {fileName}, {ext}"
       )
@@ -106,19 +106,19 @@ export class R2UploaderSettingTab extends PluginSettingTab {
         text
           .setPlaceholder(DEFAULT_SETTINGS.pathTemplate)
           .setValue(this.plugin.settings.pathTemplate)
-          .onChange(async (value) => {
+          .onChange((value) => {
             this.plugin.settings.pathTemplate = value.trim();
           })
       );
 
     new Setting(containerEl)
-      .setName("Test Connection")
+      .setName("Test connection")
       .setDesc("Verify R2 bucket access with current settings")
       .addButton((btn) =>
-        btn.setButtonText("Test Connection").onClick(async () => {
+        btn.setButtonText("Test connection").onClick(async () => {
           const s = this.plugin.settings;
           if (!s.accountId || !s.bucketName || !s.accessKeyId || !s.secretAccessKey) {
-            new Notice("Please fill in Account ID, Bucket Name, Access Key ID, and Secret Access Key first.");
+            new Notice("Please fill in account ID, bucket name, access key ID, and secret access key first.");
             return;
           }
           btn.setDisabled(true);
@@ -132,7 +132,7 @@ export class R2UploaderSettingTab extends PluginSettingTab {
             );
           } finally {
             btn.setDisabled(false);
-            btn.setButtonText("Test Connection");
+            btn.setButtonText("Test connection");
           }
         })
       );

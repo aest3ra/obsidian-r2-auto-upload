@@ -1,4 +1,22 @@
 import { requestUrl, type RequestUrlParam } from "obsidian";
+import type { HttpHandlerOptions } from "@smithy/types";
+
+interface HttpRequest {
+  protocol: string;
+  hostname: string;
+  port?: number;
+  path: string;
+  query?: Record<string, string | string[]>;
+  headers: Record<string, string>;
+  method: string;
+  body?: ArrayBuffer | ArrayBufferView | string;
+}
+
+interface HttpResponse {
+  statusCode: number;
+  headers: Record<string, string>;
+  body?: ReadableStream<Uint8Array>;
+}
 
 /**
  * Custom HTTP handler that uses Obsidian's requestUrl API
@@ -10,9 +28,9 @@ export class ObsHttpHandler {
   metadata = { handlerProtocol: "obs/requestUrl" };
 
   async handle(
-    request: any,
-    _options?: any
-  ): Promise<{ response: any }> {
+    request: HttpRequest,
+    _options?: HttpHandlerOptions
+  ): Promise<{ response: HttpResponse }> {
     // Build URL
     let url = `${request.protocol}//${request.hostname}`;
     if (request.port) {
@@ -29,7 +47,7 @@ export class ObsHttpHandler {
     for (const [key, val] of Object.entries(request.headers)) {
       const lower = key.toLowerCase();
       if (lower === "host" || lower === "content-length") continue;
-      headers[lower] = val as string;
+      headers[lower] = val;
     }
 
     // Process body
@@ -38,7 +56,7 @@ export class ObsHttpHandler {
       if (request.body instanceof ArrayBuffer) {
         body = request.body;
       } else if (ArrayBuffer.isView(request.body)) {
-        const view = request.body as ArrayBufferView;
+        const view = request.body;
         body = view.buffer.slice(view.byteOffset, view.byteOffset + view.byteLength);
       } else if (typeof request.body === "string") {
         body = request.body;
@@ -61,7 +79,7 @@ export class ObsHttpHandler {
     const respHeaders: Record<string, string> = {};
     if (resp.headers) {
       for (const [key, val] of Object.entries(resp.headers)) {
-        respHeaders[key.toLowerCase()] = val as string;
+        respHeaders[key.toLowerCase()] = val;
       }
     }
 
@@ -98,7 +116,7 @@ export class ObsHttpHandler {
   destroy(): void {}
 }
 
-function buildQueryString(query: Record<string, any>): string {
+function buildQueryString(query: Record<string, string | string[]>): string {
   const parts: string[] = [];
   for (const [key, value] of Object.entries(query)) {
     if (Array.isArray(value)) {
