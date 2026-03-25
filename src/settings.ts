@@ -32,14 +32,12 @@ export class R2UploaderSettingTab extends PluginSettingTab {
     const { containerEl } = this;
     containerEl.empty();
 
-    new Setting(containerEl).setName("R2 image uploader settings").setHeading();
-
     new Setting(containerEl)
       .setName("Account ID")
-      .setDesc("Cloudflare account ID (used to build the R2 endpoint)")
+      .setDesc("Cloudflare account ID for building the endpoint")
       .addText((text) =>
         text
-          .setPlaceholder("your-account-id")
+          .setPlaceholder("Your account ID")
           .setValue(this.plugin.settings.accountId)
           .onChange((value) => {
             this.plugin.settings.accountId = value.trim();
@@ -51,7 +49,7 @@ export class R2UploaderSettingTab extends PluginSettingTab {
       .setDesc("R2 bucket name")
       .addText((text) =>
         text
-          .setPlaceholder("my-images")
+          .setPlaceholder("My images")
           .setValue(this.plugin.settings.bucketName)
           .onChange((value) => {
             this.plugin.settings.bucketName = value.trim();
@@ -63,7 +61,7 @@ export class R2UploaderSettingTab extends PluginSettingTab {
       .setDesc("R2 API token – access key ID")
       .addText((text) =>
         text
-          .setPlaceholder("your-access-key-id")
+          .setPlaceholder("Your access key ID")
           .setValue(this.plugin.settings.accessKeyId)
           .onChange((value) => {
             this.plugin.settings.accessKeyId = value.trim();
@@ -76,7 +74,7 @@ export class R2UploaderSettingTab extends PluginSettingTab {
       .addText((text) => {
         text.inputEl.type = "password";
         text
-          .setPlaceholder("your-secret-access-key")
+          .setPlaceholder("Your secret access key")
           .setValue(this.plugin.settings.secretAccessKey)
           .onChange((value) => {
             this.plugin.settings.secretAccessKey = value.trim();
@@ -113,7 +111,7 @@ export class R2UploaderSettingTab extends PluginSettingTab {
 
     new Setting(containerEl)
       .setName("Test connection")
-      .setDesc("Verify R2 bucket access with current settings")
+      .setDesc("Verify that your bucket is accessible")
       .addButton((btn) =>
         btn.setButtonText("Test connection").onClick(async () => {
           const s = this.plugin.settings;
